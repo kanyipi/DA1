@@ -1,14 +1,17 @@
 ID: INT distinct id for each data point
-STORE NAME: STRING shop name as of google maps
+SHOP NAME: STRING shop name as of google maps
 STORE TYPE: STRING as we guessed range: Department Stores, Specialty Stores, Supermarkets, Convenience Stores, Discount Stores, Hypermarkets or Super Stores, Drug Stores
-PART OF THE CITY: STRING Inner, Outer
-DISTRICT: INT the district of Budapest which the shop is in range 9,16
-ADDRESS: STRING adress of the shop as of google
+INNER: BOOLEAN true if it is in the inner category false if it is in the outer category 
+OUTER: BOOLEAN true if it is in the outer category false if it is in the inner category
+DISTRICT: INT the district of Budapest which the shop is in range 10,16
+ADRESS: STRING adress of the shop as of google
 NATIONALITY: STRING the assumed nationality of the store
+STORE SIZE AREA: INT Estimate of the size of the shop in m^2 range 1-10000
+STORE SIZE CASHIER: INT Number of cashiers in the shop at the given time 0-100
 BUSINESS QUEUE: INT Number of people seen at the given time in the queues in the shop range 0-100
-PRODUCT: STRING Coca Cola 0.5l, Nutella 400g
-PRICE IN HUF: INT The price of the product in that shop at the given time range 1-1000 
-DISCOUNTED: BOOLEAN True if product1 is discounted false other wise
+PRODUCT1 PRICE IN HUF: INT The price of Coca Cola 0.5l with sugar in that shop at the given time range 1-1000 
+PRODUCT2 PRICE IN HUF: INT The price of 400g Nutella in that shop at the given time range 1-1000 
+PERSON: STRING Person(s) who gathered the data range: Peter, Sara, Rauhan, Xibei, Natalia
+PRODUCT1 DISCOUNTED: BOOLEAN True if product1 is discounted false other wise
+PRODUCT2 DISCOUNTED: BOOLEAN True if product2 is discounted false other wise
 POSITION OF THE PRODUCT: STRING Where does the product sit on the shelf range: top middle, bottom
-PERSON: STRING Person who gathered the data range: Peter, Sara, Rauhan, Xibei, Natalia
-DATE: DATE when we gathered the data
