@@ -11,7 +11,7 @@ STORE SIZE CASHIER: INT Number of cashiers in the shop at the given time 0-100
 BUSINESS QUEUE: INT Number of people seen at the given time in the queues in the shop range 0-100
 PRODUCT1 PRICE IN HUF: INT The price of Coca Cola 0.5l with sugar in that shop at the given time range 1-1000 
 PRODUCT2 PRICE IN HUF: INT The price of 400g Nutella in that shop at the given time range 1-1000 
-PERSON: STRING Person who gathered the data range: Peter, Sara, Rauhan, Xibei, Natalia
+PERSON: STRING Person(s) who gathered the data range: Peter, Sara, Rauhan, Xibei, Natalia
 PRODUCT1 DISCOUNTED: BOOLEAN True if product1 is discounted false other wise
 PRODUCT2 DISCOUNTED: BOOLEAN True if product2 is discounted false other wise
 POSITION OF THE PRODUCT: STRING Where does the product sit on the shelf range: top middle, bottom
