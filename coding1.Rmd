@@ -10,11 +10,11 @@ output: html_document
 library(tidyverse)
 library(modelsummary)
 library(kableExtra)
+library(knitr)
 rm (list=ls())
 
 df <- read_csv( 'https://raw.githubusercontent.com/kanyipi/DA1/main/bogota_data.csv' )
-df <- df %>% filter( price_in_huf!="N/A" )
-df <- mutate(df, as.integer(price_in_huf))
+df <- mutate(df, price_in_huf = as.integer(price_in_huf))
 dfn <-filter(df, product=='Nutella 400g')
 dfc <-filter(df, product=='Coca Cola 0.5l plastic bottle')
 
@@ -26,22 +26,59 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center"}
-datasummary(df)
-summarise(dfn,
-          n= n(),
-          mean=mean(dfn$price_in_huf)
-          )
+```{r, eval=TRUE, echo=FALSE, results='asis'}
 
-typeof(df$price_in_huf)
+
+P95 <- function(x){quantile(x,0.95,na.rm=T)}
+P05 <- function(x){quantile(x,0.05,na.rm=T)}
+
+d_summary_stats_coke <- summarise(dfc,
+          variable = "Price of Coke",
+          n= n(),
+          mean = mean(x = price_in_huf, na.rm=TRUE),
+          median = median(x = price_in_huf,na.rm=TRUE),
+          min= min(price_in_huf,na.rm=TRUE),
+          max = max(price_in_huf, na.rm=TRUE),
+          range = max-min,
+          p05 = P05(price_in_huf),
+          p95 = P95(price_in_huf),
+          sd = sd(price_in_huf, na.rm=TRUE),
+          missing = count(filter(dfc, is.na(price_in_huf))))
+
+d_summary_stats_nutella <- summarise(dfn,
+          variable = "Price of Nutella",
+          n= n(),
+          mean = mean(x = price_in_huf, na.rm=TRUE),
+          median = median(x = price_in_huf,na.rm=TRUE),
+          min= min(price_in_huf,na.rm=TRUE),
+          max = max(price_in_huf, na.rm=TRUE),
+          range = max-min,
+          p05 = P05(price_in_huf),
+          p95 = P95(price_in_huf),
+          sd = sd(price_in_huf, na.rm=TRUE),
+          missing = count(filter(dfn, is.na(price_in_huf))))
+
+
+table_summary <- add_row(d_summary_stats_coke,d_summary_stats_nutella)
+kable(table_summary)
+
 ```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center"}
+
+ggplot(data=dfc)+
+        geom_histogram(aes(x=price_in_huf), fill ='navyblue', binwidth = 10)+
+        labs(x='Price',
+             y='Count')
+
+ggplot(data=dfn)+
+        geom_histogram(aes(x=price_in_huf), fill ='navyblue', binwidth = 10)+
+        labs(x='Price',
+             y='Count')
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
