@@ -1,19 +1,19 @@
 ---
 title: "Bogota - Coding 1 Team Project"
 author: "Bogota team members: Natalia Iriarte, Péter Kaiser, Rauhan Nazir, Sára Vargha, Xibei Chen"
-date: '2021/11/4'
 output: 
  pdf_document: default
  html_document:
  df_print: paged
 ---
+
 # Introduction
 motivating and explaining your descriptive statistics (2-3 sentence)
 
 Data are available from: <https://github.com/kanyipi/DA1/blob/main/bogota_data.csv>
 
 # Data
-Our main variable is the price in HUF of 2 products: regular Coca Cola 0.5l plastic bottle and Nutella 400g. The collection was carried out by anonymous visit to randomly selected stores in districts 9 and 16. (There are three stores are actually on the edge between districts 8 and 9. But we decided to keep the data in the table as they are still valuable for our current analysis purpose.) Apart from that, we measured the busyness of the stores using number of people waiting in queue divided by the number of cashiers. In addition, the data table also includes information on the position of both products on the shelf and if they had a discount at the time of the visit, for these we used the observation method. As a complement we include qualitative information about the store (name, type, address, district and nationality).
+Our main variable is the price in HUF of 2 products: regular Coca Cola 0.5l plastic bottle and Nutella 400g. The collection was carried out by anonymous visit to randomly selected stores in districts 9 and 16. (Three stores are on the edge of districts 8 and 9. But we decided to keep the data in the table as they are still valuable for our current analysis purpose.) Apart from that, we measured the busyness of the stores using number of people waiting in queue divided by the number of cashiers. In addition, the data table also includes information on the position of both products on the shelf and if they had a discount at the time of the visit, for these we used the observation method. As a complement we include qualitative information about the store (name, type, address, district and nationality).
 ```{r setup, include=FALSE}
 rm (list=ls())
 library(tidyverse)
@@ -69,6 +69,7 @@ kable(table_summary,
 ```
 We have also calculated the correlation coefficient between the price of Coke and Nutella, which is `r round(cor(df$price_in_huf[df$product=='Nutella 400g'], df$price_in_huf[df$product=='Coca Cola 0.5l plastic bottle'], use ='complete.obs' ), 2)`, suggesting statistically positive association between the price of both products, but rather a weak one (not as high as we assumed).
 
+
 # Distributions
 ## Price of Coke and Nutella
 ```{r, echo=FALSE, warning= FALSE, figures-side, fig.show="hold", out.width="50%"}
@@ -87,7 +88,8 @@ ggplot(data=dfn)+
              title = 'Distribution of Price for Nutella')+
         theme_minimal()
 ```
-We want to visualize the distribution of different prices and the reason we choose histogram over density plot is that we find histogram more of a straightforward interpretation. Regarding the number of bins, we want to avoid a broken comb look by having too many bins. We think the numbers of bins we settled eventually pprtray the distribution of data quite well.
+
+We chose histogram over density plot, as we find histogram more of a straightforward interpretation of the distribution of the prices. We want to avoid a broken comb look by having too many bins. We think the numbers of bins we settled with portray the distribution quite well.
 
 ## Busyness of Stores in Inner and Outer City
 We were also curious about whether the distribution of busyness of stores are different between inner and outer city, so we created the following boxplot.
@@ -105,7 +107,7 @@ df_busyness %>% ggplot(aes(x=part_of_the_city, y=busyness, fill=part_of_the_city
                         theme(legend.position="none")
 
 ```
-
+\vspace{-5truemm}
 # Conclusion
-* Overall, the distribution of Nutella prices is way more spread out than the distribution of Coke prices with more than twice the standard deviation. With less missing values of price of Coke, we can also tell that stores are more likely to sell Coke than Nutella, suggesting Coke is more popular in general.
-* The conditional mean of busyness is a bit lower in outer city than in inner city. However, the busyness in outer city is more spread out, whereas it is more centralized.
+* The distribution of Nutella prices is way more spread out than Coke prices with over twice the standard deviation. With less missing values in Coke prices, we can tell stores are more likely to sell Coke than Nutella.
+* The conditional mean of busyness is a bit lower in outer city than inner city. However, the busyness in outer city is more spread out, whereas it is more centralized in inner city.
