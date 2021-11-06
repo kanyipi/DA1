@@ -3,18 +3,20 @@ title: "Bogota - Coding 1 Team Project"
 author: "Bogota team members: Natalia Iriarte, Péter Kaiser, Rauhan Nazir, Sára Vargha, Xibei Chen"
 date: "2021/11/6"
 output: 
- pdf_document: default
  html_document:
+   theme: journal
+   highlight: espresso
+ pdf_document: default
  df_print: paged
 ---
 
-# Introduction
-motivating and explaining your descriptive statistics (2-3 sentence)
+## Introduction
+Our data was originally collected as part of a group assignment in the Data Analysis 1 course and includes 26-26 observations of the price in HUF of two products: regular Coca Cola 0.5l plastic bottle and Nutella 400g. In case of Coke, the range of prices was between 219 and 390 HUF with an average of 279.33 HUF, while Nutella prices fell into the range between 1099 and 1419 HUF with an average of 1272.05 HUF.
 
 Data are available from: <https://github.com/kanyipi/DA1/blob/main/bogota_data.csv>
 
-# Data
-Our main variable is the price in HUF of 2 products: regular Coca Cola 0.5l plastic bottle and Nutella 400g. The collection was carried out by anonymous visit to randomly selected stores in districts 9 and 16. (Three stores are on the edge of districts 8 and 9. But we decided to keep the data in the table as they are still valuable for our current analysis purpose.) Apart from that, we measured the busyness of the stores using number of people waiting in queue divided by the number of cashiers. In addition, the data table also includes information on the position of both products on the shelf and if they had a discount at the time of the visit, for these we used the observation method. As a complement we include qualitative information about the store (name, type, address, district and nationality).
+## Data
+The collection was carried out by anonymous visit to randomly selected stores in districts 9 and 16. (Three stores are on the edge of districts 8 and 9. But we decided to keep the data in the table as they are still valuable for our current analysis purpose.) Apart from that, we measured the busyness of the stores using number of people waiting in queue divided by the number of cashiers. In addition, the data table also includes information on the position of both products on the shelf and if they had a discount at the time of the visit, for these we used the observation method. As a complement we include qualitative information about the store (name, type, address, district and nationality).
 ```{r setup, include=FALSE}
 rm (list=ls())
 library(tidyverse)
@@ -71,8 +73,8 @@ kable(table_summary,
 We have also calculated the correlation coefficient between the price of Coke and Nutella, which is `r round(cor(df$price_in_huf[df$product=='Nutella 400g'], df$price_in_huf[df$product=='Coca Cola 0.5l plastic bottle'], use ='complete.obs' ), 2)`, suggesting statistically positive association between the price of both products, but rather a weak one (not as high as we assumed).
 
 
-# Distributions
-## Price of Coke and Nutella
+## Distributions
+### Price of Coke and Nutella
 ```{r, echo=FALSE, warning= FALSE, figures-side, fig.show="hold", out.width="50%"}
 
 ggplot(data=dfc)+
@@ -80,35 +82,43 @@ ggplot(data=dfc)+
         labs(x='Price of Coke (HUF)',
              y='Number of Observations',
              title = 'Distribution of Price for Coke')+
-        theme_minimal()
+        theme_minimal()+
+        geom_segment( aes(x = mean( dfc$price_in_huf , na.rm = T ), y = 0, 
+                    xend = mean( dfc$price_in_huf , na.rm = T ) , yend = 14) , color = 'black', linetype="dashed")+
+        annotate( "text" , x = mean( dfc$price_in_huf, na.rm = T ) + 10 , y = 13.7 , label = 'Mean', color = 'black')
 
 ggplot(data=dfn)+
         geom_histogram(aes(x=price_in_huf), color='black', fill ='#00bec4', bins = 4)+
         labs(x='Price of Nutella (HUF)',
              y='Number of Observations',
              title = 'Distribution of Price for Nutella')+
-        theme_minimal()
+        theme_minimal()+
+        geom_segment( aes(x = mean( dfn$price_in_huf , na.rm = T ), y = 0, 
+                      xend = mean( dfn$price_in_huf , na.rm = T ) , yend = 14) , color = 'black',linetype="dashed")+
+        annotate( "text" , x = mean( dfn$price_in_huf, na.rm = T ) + 20 , y = 13.7  , label = 'Mean' , color = 'black')
 ```
 
 We chose histogram over density plot, as we find histogram more of a straightforward interpretation of the distribution of the prices. We want to avoid a broken comb look by having too many bins. We think the numbers of bins we settled with portray the distribution quite well.
 
-## Busyness of Stores in Inner and Outer City
-We were also curious about whether the distribution of busyness of stores are different between inner and outer city, so we created the following boxplot.
+### Busyness of Stores in Inner and Outer City
+We were also curious about the association between the busyness of stores and their location in the city, so we created the following boxplot with jitter points, and with dashed lines indicating the mean values.
 ```{r echo=FALSE, warning=FALSE, fig.width=4, fig.height = 3, fig.align="center"}
 df_busyness<- df %>% 
                 group_by(part_of_the_city, address) %>% 
                 summarize(busyness = mean(busyness),.groups='keep')
 
 df_busyness %>% ggplot(aes(x=part_of_the_city, y=busyness, fill=part_of_the_city)) +
-                        geom_boxplot(width=.5, outlier.colour="red", outlier.shape=8, outlier.size=4)+
+                        geom_boxplot(fatten=3, width=.5, outlier.colour="red", outlier.shape=8, outlier.size=4)+
                         geom_jitter(width =.1, alpha=0.5)+
                         labs(x='Part of the City',
                         y='Busyness')+
                         theme_minimal()+
-                        theme(legend.position="none")
+                        theme(legend.position="none")+
+                        stat_summary(fun.y = mean, geom = "errorbar", aes(ymax = ..y.., ymin = ..y..), width = .75, linetype = "dashed")
 
 ```
 \vspace{-5truemm}
-# Conclusion
+
+## Conclusion
 * The distribution of Nutella prices is way more spread out than Coke prices with over twice the standard deviation. With less missing values in Coke prices, we can tell stores are more likely to sell Coke than Nutella.
-* The conditional mean of busyness is a bit lower in outer city than inner city. However, the busyness in outer city is more spread out, whereas it is more centralized in inner city.
+* The conditional mean of busyness is a bit lower in inner city than outer city. However, the median are the same. And the distribution of busyness in outer city is more spread out with double the IQR as shown in the boxplot, whereas it is more centralized in inner city.
