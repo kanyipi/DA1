@@ -1,8 +1,8 @@
 ﻿id,store_name,store_type,part_of_the_city,district,address,nationality,business_queue,num_of_cashiers,product,price_in_huf,position_on_the_shelf,discounted,person,date_time
 01_1,Príma,Supermarket,outer,16,"Budapest, Imre u. 2, 1165",Hungarian,3,1,Coca Cola 0.5l plastic bottle,299,middle,no,Peter,9.28 07:15
 01_2,Príma,Supermarket,outer,16,"Budapest, Imre u. 2, 1165",Hungarian,3,1,Nutella 400g,1249,top,no,Peter,9.28 07:15
-02_1,Príma Mátyásföld,Supermarket,outer,16,"Budapest, Jókai Mór u. 2, 1167",Hungarian,1,2,Coca Cola 0.5l plastic bottle,269,middle,no,Peter,9.28 07:30
-02_2,Príma Mátyásföld,Supermarket,outer,16,"Budapest, Jókai Mór u. 2, 1168",Hungarian,1,2,Nutella 400g,1249,top,no,Peter,9.28 07:30
+02_1,Príma Mátyásföld,Supermarket,outer,16,"Budapest, Jókai Mór u. 2, 1165",Hungarian,1,2,Coca Cola 0.5l plastic bottle,269,middle,no,Peter,9.28 07:30
+02_2,Príma Mátyásföld,Supermarket,outer,16,"Budapest, Jókai Mór u. 2, 1165",Hungarian,1,2,Nutella 400g,1249,top,no,Peter,9.28 07:30
 03_1,Príma,Supermarket,outer,16,"Budapest, Centenáriumi stny. 24, 1165",Hungarian,5,1,Coca Cola 0.5l plastic bottle,299,middle,no,Peter,9.28 07:40
 03_2,Príma,Supermarket,outer,16,"Budapest, Centenáriumi stny. 24, 1165",Hungarian,5,1,Nutella 400g,1249,top,no,Peter,9.28 07:40
 04_1,Peti Csemege,Grocery Store,outer,16,"Budapest, Centenáriumi stny. 16, 1165",Hungarian,1,1,Coca Cola 0.5l plastic bottle,299,middle,no,Peter,9.28 07:50
@@ -34,7 +34,7 @@
 17_1,Spar szupermarket,Supermarket,inner,9,"Budapest, Lobogó u. 14, 1098",Dutch,2,1,Coca Cola 0.5l plastic bottle,259,middle,no,Sara,9.28 13:56
 17_2,Spar szupermarket,Supermarket,inner,9,"Budapest, Lobogó u. 14, 1098",Dutch,2,1,Nutella 400g,1289,top,no,Sara,9.28 13:56
 18_1,LIDL,Grocery Store,inner,9,"Budapest, Lobogó u. 12, 1098",German,3,2,Coca Cola 0.5l plastic bottle,259,top,no,Sara,9.28 14:04
-18_2,LIDL,Grocery Store,inner,9,"Budapest, Lobogó u.12, 1098",German,3,2,Nutella 400g,1289,bottom,no,Sara,9.28 14:04
+18_2,LIDL,Grocery Store,inner,9,"Budapest, Lobogó u. 12, 1098",German,3,2,Nutella 400g,1289,bottom,no,Sara,9.28 14:04
 19_1,DM,Drug store,inner,9,"Budapest, Napfény u. 7, 1098",German,0,1,Coca Cola 0.5l plastic bottle,339,middle,no,Sara,9.28 14:13
 19_2,DM,Drug store,inner,9,"Budapest, Napfény u. 7, 1098",German,0,1,Nutella 400g,N/A,N/A,N/A,Sara,9.28 14:13
 20_1,Slin Market,Discount Supermarket,inner,9,"Budapest, Toronyház u. 3, 1098",Asian,1,1,Coca Cola 0.5l plastic bottle,290,middle,no,Sara,9.28 14:31
