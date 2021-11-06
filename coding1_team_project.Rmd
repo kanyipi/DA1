@@ -19,7 +19,6 @@ rm (list=ls())
 library(tidyverse)
 library(dplyr)
 library(knitr)
-library(viridisLite)
 
 # Load data from GitHub
 df <- read_csv( 'https://raw.githubusercontent.com/kanyipi/DA1/main/bogota_data.csv' )
