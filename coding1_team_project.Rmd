@@ -1,6 +1,7 @@
 ---
 title: "Bogota - Coding 1 Team Project"
 author: "Bogota team members: Natalia Iriarte, Péter Kaiser, Rauhan Nazir, Sára Vargha, Xibei Chen"
+date: "2021/11/6"
 output: 
  pdf_document: default
  html_document:
