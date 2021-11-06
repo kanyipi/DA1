@@ -98,7 +98,7 @@ df_busyness<- df %>%
 
 df_busyness %>% ggplot(aes(x=part_of_the_city, y=busyness, fill=part_of_the_city)) +
                         geom_boxplot(width=.5, outlier.colour="red", outlier.shape=8, outlier.size=4)+
-                        geom_jitter(width =.1)+
+                        geom_jitter(width =.1, alpha=0.5)+
                         labs(x='Part of the City',
                         y='Busyness')+
                         theme_minimal()+
